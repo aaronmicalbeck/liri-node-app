@@ -118,6 +118,6 @@ let runLiri = function(argument1, argument2) {
   userOption(argument1, argument2);
 };
 
-runLiri(process.argv[2], process.argv.slice(3).join(` `));
+runLiri(search, term);
 
 // ////////////////////////////////////////////////////////////////////////
