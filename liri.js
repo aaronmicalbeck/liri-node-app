@@ -77,28 +77,41 @@ let doWhatItSays = function(){
 
 fs.readFile(`random.txt`, `utf8`, function(err, data){
     if(err) throw err;
-    console.log(data);
 
     let arr = data.split(`,`);
 
     if(arr.length == 2){
-        
+        userOption(arr[0], arr[1]);
+    }
+    else if(arr.length == 1){
+        userOption(arr[0]);
     }
 })
 
 }
 
 // ////////////////////////////////////////////////////////////////////////
+let userOption = function(command, input){
+    switch (command){
+        case `spotify-this` :
+            spotifyThis(input);
+            break;
+        case `movie-this` :
+            movieThis(input);
+            break;
+        case `do-what-it-says` :
+            doWhatItSays();
+            break;
+            default:
+            console.log(`LIRI doesn't know that...`);
+    }
+}
 
-if (!search) {
-  spotifyThis(`The Sign`);
-}
-if (search === `spotify-this`) {
-  spotifyThis(term);
-} else if (search === `movie-this`) {
-  movieThis(term);
-} else if (search === `do-what-it-says`){
-    doWhatItSays();
-} else {
-  console.log(`Liri needs some help!`);
-}
+let runLiri = function(argument1, argument2){
+    userOption(argument1, argument2);
+
+};
+
+runLiri(process.argv[2], process.argv.slice(3).join(` `));
+
+// ////////////////////////////////////////////////////////////////////////
