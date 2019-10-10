@@ -18,7 +18,7 @@ The program will take a command in the terminal.  Specifically:
 
 # Visuals
 
-![spotify-this](assets/spotify-this.png "Utilizing spotify-this as the command")
+![spotify-this](/assets/spotify-this.png "Utilizing spotify-this as the command")
 
 
 
