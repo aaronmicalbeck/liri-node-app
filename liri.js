@@ -1,10 +1,12 @@
 require("dotenv").config();
-
 let keys = require("./keys.js");
 let fs = require(`fs`);
 let axios = require(`axios`);
 let Spotify = require(`node-spotify-api`);
+let moment = require(`moment`);
 
+// ////////////////////////////////////////////////////////////////////////
+// Constructors and variables
 // ////////////////////////////////////////////////////////////////////////
 
 let spotify = new Spotify({
@@ -12,9 +14,11 @@ let spotify = new Spotify({
   secret: keys.spotify.secret
 });
 
-let search = process.argv[2];
-let term = process.argv.slice(3).join(" ");
+const search = process.argv[2];
+const term = process.argv.slice(3).join(" ");
 
+// ////////////////////////////////////////////////////////////////////////
+// Function that prints song info
 // ////////////////////////////////////////////////////////////////////////
 
 let getArtist = function(artist) {
@@ -39,6 +43,9 @@ let spotifyThis = function(songName) {
 };
 
 // ////////////////////////////////////////////////////////////////////////
+// Function that prints movie info
+// ////////////////////////////////////////////////////////////////////////
+
 let movieThis = function(movieName) {
   let URL =
     "http://www.omdbapi.com/?t=" +
@@ -82,6 +89,31 @@ let movieThis = function(movieName) {
 };
 
 // ////////////////////////////////////////////////////////////////////////
+// Function that prints event & venue info
+// ////////////////////////////////////////////////////////////////////////
+
+let concertThis = function(band){
+    let URL = "https://rest.bandsintown.com/artists/" + band + "/events?app_id=codingbootcamp";
+    
+
+    axios.get(URL).then(function(response) {
+        for (let i = 0; i<response.data.length; i++){
+        let date = moment(response.data[i].datetime).format('DD-MM-YYYY h:mmA');
+        console.log(`----------------------------------`);
+        console.log(response.data[i].lineup);
+        console.log(response.data[i].venue.name);
+        console.log(response.data[i].venue.city + `, ` +response.data[i].venue.region +` `+ response.data[i].venue.country);
+        console.log(date);
+        console.log(`----------------------------------`);
+
+        }
+    })
+};
+
+// ////////////////////////////////////////////////////////////////////////
+// Function that reads random.txt file and executes what is written
+// ////////////////////////////////////////////////////////////////////////
+
 let doWhatItSays = function() {
   fs.readFile(`random.txt`, `utf8`, function(err, data) {
     if (err) throw err;
@@ -98,6 +130,9 @@ let doWhatItSays = function() {
 };
 
 // ////////////////////////////////////////////////////////////////////////
+// Cases
+// ////////////////////////////////////////////////////////////////////////
+
 let userOption = function(command, input) {
   switch (command) {
     case `spotify-this-song`:
@@ -108,6 +143,9 @@ let userOption = function(command, input) {
       break;
     case `do-what-it-says`:
       doWhatItSays();
+      break;
+    case `concert-this`:
+      concertThis(input);
       break;
     default:
       console.log(`LIRI doesn't know that...`);
