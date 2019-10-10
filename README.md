@@ -8,7 +8,7 @@ This will require your own API keys as well as your own .env file to run the pro
 
 The program will take a command in the terminal.  Specifically:
 
->spotify-this-song "songname": This will print artist namee, song title, a spotify link to preview, and the album on which it is found.
+>spotify-this-song "songname": This will print artist name, song title, a spotify link to preview, and the album on which it is found.
 
 >concert-this "band or artist name": This will print the venue name, location, and date and time of the band/artist's show.
 
