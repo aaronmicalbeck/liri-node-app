@@ -19,6 +19,11 @@ The program will take a command in the terminal.  Specifically:
 # Visuals
 
 ![spotify-this](assets/spotify-this-song.png "Utilizing spotify-this as the command")
+![spotify-this](assets/concert-this.png "Utilizing concert-this as the command")
+![spotify-this](assets/movie-this.png "Utilizing movie-this as the command")
+![spotify-this](assets/random.txt.png "random.txt file that is read")
+![spotify-this](assets/do-what-it-says.png "Utilizing do-what-it-says as the command")
+
 
 
 
